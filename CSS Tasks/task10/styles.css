@@ -1,0 +1,82 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #fff;
+    line-height: 1.6;
+}
+
+/* Ensure text contrast meets WCAG standards */
+h1, h2 {
+    color: #111; /* Darker text for contrast */
+}
+
+a {
+    color: #0066cc; /* High contrast link color */
+    text-decoration: underline;
+}
+
+/* Responsive Navigation */
+nav {
+    background: #444;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Footer Styling */
+footer {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Print Styles */
+@media print {
+    /* Hide non-essential elements */
+    nav, footer {
+        display: none;
+    }
+
+    /* Ensure high readability */
+    body {
+        font-size: 14pt;
+        color: #000;
+        background: #fff;
+    }
+
+    h1, h2 {
+        color: #000;
+    }
+
+    /* Make sure links are visible */
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+    /* Ensure images fit properly */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Prevent page breaks in important elements */
+    article, table {
+        page-break-inside: avoid;
+    }
+}
