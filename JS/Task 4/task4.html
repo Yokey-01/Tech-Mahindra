@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery with Likes</title>
+    <style>
+        .gallery {
+            display: flex;
+            gap: 20px;
+        }
+        .image-container {
+            position: relative;
+            text-align: center;
+        }
+        .image-container img {
+            width: 200px;
+            height: auto;
+            transition: border 0.3s ease-in-out;
+        }
+        .image-container img:hover {
+            border: 3px solid lightgray;
+        }
+        .like-button {
+            margin-top: 5px;
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .like-count {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <div class="image-container">
+            <img src="download.jpg" alt="Image 1"><br>
+            <button class="like-button" onclick="incrementLike(this)">Like</button>
+            <span class="like-count">0</span>
+        </div>
+        <div class="image-container">
+            <img src="download 2.jpg" alt="Image 2"><br>
+            <button class="like-button" onclick="incrementLike(this)">Like</button>
+            <span class="like-count">0</span>
+        </div>
+    </div>
+    
+    <script>
+        function incrementLike(button) {
+            let likeSpan = button.nextElementSibling;
+            let currentLikes = parseInt(likeSpan.textContent, 10);
+            likeSpan.textContent = currentLikes + 1;
+        }
+    </script>
+</body>
+</html>

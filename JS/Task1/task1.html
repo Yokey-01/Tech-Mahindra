@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promo Banner</title>
+</head>
+<body>
+    <div id="promoBanner">Promotional Text</div>
+    
+    <script>
+        let promoBanner = document.getElementById("promoBanner");
+        let promoMessage = "Welcome to our store! Enjoy great discounts.";
+        let discountPercent = 20;
+        let isUserLoggedIn = true; 
+        let userLanguage = "en"; 
+
+        if (isUserLoggedIn) {
+            promoBanner.textContent = `Hello, valued customer! You get ${discountPercent}% off today!`;
+        } else {
+            promoBanner.textContent = promoMessage;
+        }
+        
+
+        console.log("promoMessage:", promoMessage, "Type:", typeof promoMessage);
+        console.log("discountPercent:", discountPercent, "Type:", typeof discountPercent);
+        console.log("isUserLoggedIn:", isUserLoggedIn, "Type:", typeof isUserLoggedIn);
+        console.log("userLanguage:", userLanguage, "Type:", typeof userLanguage);
+    </script>
+</body>
+</html>
