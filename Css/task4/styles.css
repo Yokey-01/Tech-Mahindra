@@ -1,0 +1,53 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+/* Header */
+header {
+    background:linear-gradient(100deg,violet, rgb(130, 211, 251));
+    color: white;
+    padding: 20px;
+}
+
+/* Blog Container - Grid Layout */
+.blog-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Auto-adjusting grid */
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Blog Post Styling */
+.blog-post {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+.blog-post:hover {
+    transform: translateY(-5px); /* Small hover effect */
+}
+
+/* Blog Post Images */
+.blog-post img {
+    width: 350px;
+    height: 400px;
+    border-radius: 10px;
+}
+
+/* Responsive Design: 1 Column for Mobile */
+@media (max-width: 600px) {
+    .blog-container {
+        grid-template-columns: 1fr; /* 1 column layout for small screens */
+    }
+}

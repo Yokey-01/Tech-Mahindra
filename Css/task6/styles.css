@@ -1,0 +1,51 @@
+:root{
+    --primary: hsla(300, 65%, 56%, 0.65);
+    --secondary: hsla(180, 40%, 50%, 0.65);
+
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+header {
+    
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    font-family: 'Playball';
+    display: grid;
+    background: linear-gradient(135deg, var(--primary), var(--secondary)),
+                url('bg.jpg') no-repeat center center / cover;
+} 
+
+.h-txt{
+    max-width: 650px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    color: white;
+}
+.h-txt h1{
+    letter-spacing: 5px;
+    font-size:50px;
+}
+
+.h-txt p{
+    font-size:22px;
+} 
+.h-txt a{
+    text-decoration: none;
+    background: indianred;
+    color: white;
+    padding: 10px 20px;
+    letter-spacing: 5px;
+    transition: 0.4s;
+}
+.h-txt a:hover{
+    background: transparent;
+    border: 1px solid indianred;
+}
