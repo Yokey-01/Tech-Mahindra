@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount System</title>
+</head>
+<body>
+    <h1>Discount System</h1>
+    <label>
+        Logged In: <input type="checkbox" id="isLoggedIn">
+    </label>
+    <br>
+    <label>
+        Membership Level:
+        <select id="membershipLevel">
+            <option value="Silver">Silver</option>
+            <option value="Gold">Gold</option>
+            <option value="Platinum">Platinum</option>
+        </select>
+    </label>
+    <br>
+    <label>
+        Valid Coupon: <input type="checkbox" id="isCouponValid">
+    </label>
+    <br>
+    <button onclick="applyDiscount()">Get Discount</button>
+    <p id="discountMessage"></p>
+
+    <script>
+        // Discount system logic
+        function calculateDiscount(isLoggedIn, membershipLevel, isCouponValid) {
+            // Boolean logic for membership check
+            const hasGoldOrHigher = isLoggedIn && (membershipLevel === "Gold" || membershipLevel === "Platinum");
+            
+            // Ternary operator to determine base discount
+            const baseDiscount = hasGoldOrHigher ? 20 : 10;
+            
+            // Advanced condition handling for coupon validation
+            if (!isLoggedIn) {
+                document.getElementById("discountMessage").textContent = "User must be logged in to receive a discount.";
+                return 0;
+            }
+            
+            if (!isCouponValid) {
+                document.getElementById("discountMessage").textContent = "Invalid coupon. Applying base discount: " + baseDiscount + "%";
+                return baseDiscount;
+            }
+            
+            // Additional discount for valid coupon
+            const finalDiscount = baseDiscount + 5;
+            document.getElementById("discountMessage").textContent = `Final Discount: ${finalDiscount}%`;
+            return finalDiscount;
+        }
+
+        function applyDiscount() {
+            const isLoggedIn = document.getElementById("isLoggedIn").checked;
+            const membershipLevel = document.getElementById("membershipLevel").value;
+            const isCouponValid = document.getElementById("isCouponValid").checked;
+            
+            calculateDiscount(isLoggedIn, membershipLevel, isCouponValid);
+        }
+    </script>
+</body>
+</html>

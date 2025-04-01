@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library System</title>
+</head>
+<body>
+    <h1>Library Checkout System</h1>
+    <p id="output"></p>
+    
+    <script>
+        // Book object constructor
+        class Book {
+            constructor(title, author, isAvailable = true) {
+                this.title = title;
+                this.author = author;
+                this.isAvailable = isAvailable;
+            }
+        }
+
+        // Function to check out a book
+        function checkoutBook(bookObj) {
+            if (bookObj.isAvailable) {
+                bookObj.isAvailable = false;
+                return `You have checked out "${bookObj.title}".`;
+            } else {
+                return `Sorry, "${bookObj.title}" is not available.`;
+            }
+        }
+
+
+        const book1 = new Book("Harry Potter", "J.K Rowling");
+        const book2 = new Book("Silent Patient", "George Orwell", false);
+
+        let output = `${checkoutBook(book1)}<br>${checkoutBook(book2)}`;
+        document.getElementById("output").innerHTML = output;
+    </script>
+</body>
+</html>

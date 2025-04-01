@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+</head>
+<body>
+    <h1>Task List</h1>
+    <ul id="taskList"></ul>
+    <p>Total Tasks: <span id="totalTasks"></span></p>
+    <p>Completed Tasks: <span id="completedTasks"></span></p>
+    
+    <script>
+
+        const tasks = [
+            { name: "Submit report", isCompleted: false, dueDate: "2024-03-15" },
+            { name: "Review PR", isCompleted: true, dueDate: "2024-03-12" },
+            { name: "Plan sprint", isCompleted: false, dueDate: "2024-03-10" },
+            { name: "Fix bug #421", isCompleted: true, dueDate: "2024-03-18" }
+        ];
+
+        function getIncompleteTasks(tasks) {
+            return tasks.filter(task => !task.isCompleted);
+        }
+
+        const formattedTasks = tasks.map(function(task) {
+            let prefix = "";
+            const today = new Date().toISOString().split("T")[0];
+            if (task.dueDate && task.dueDate < today && !task.isCompleted) {
+                prefix = "[Overdue] ";
+            }
+            return { ...task, name: prefix + task.name };
+        });
+
+        const totalTasks = () => tasks.length;
+        const completedTasks = () => tasks.filter(task => task.isCompleted).length;
+
+        const taskList = document.getElementById("taskList");
+        formattedTasks.forEach(task => {
+            const li = document.createElement("li");
+            li.textContent = task.name + (task.isCompleted ? " (Completed)" : " (Pending)");
+            taskList.appendChild(li);
+        });
+
+        document.getElementById("totalTasks").textContent = totalTasks();
+        document.getElementById("completedTasks").textContent = completedTasks();
+    </script>
+</body>
+</html>

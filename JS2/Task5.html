@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .user-card { padding: 15px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; background-color: #f9f9f9; }
+        .user-header { font-weight: bold; font-size: 16px; margin-bottom: 5px; }
+        .post-list { padding-left: 20px; }
+    </style>
+    <script>
+        async function fetchUsersAndPosts() {
+            const userContainer = document.getElementById("userContainer");
+            userContainer.innerHTML = "Loading data...";
+
+            try {
+                const userResponse = await fetch("https://reqres.in/api/users?page=2");
+                if (!userResponse.ok) throw new Error("Error fetching user data");
+                const userData = await userResponse.json();
+                const users = userData.data;
+
+                const userDetails = await Promise.all(users.map(async (user) => {
+                    const postResponse = await fetch("https://dummyjson.com/posts?skip=5&limit=3");
+                    if (!postResponse.ok) throw new Error(`Could not load posts for ${user.id}`);
+                    const postData = await postResponse.json();
+                    return { ...user, posts: postData.posts };
+                }));
+
+                userContainer.innerHTML = "";
+                userDetails.forEach(user => {
+                    const userCard = document.createElement("div");
+                    userCard.classList.add("user-card");
+                    userCard.innerHTML = `<p class="user-header">${user.first_name} ${user.last_name} - ${user.email}</p>`;
+
+                    const postList = document.createElement("ul");
+                    postList.classList.add("post-list");
+                    user.posts.forEach(post => {
+                        const listItem = document.createElement("li");
+                        listItem.textContent = post.title;
+                        postList.appendChild(listItem);
+                    });
+
+                    userCard.appendChild(postList);
+                    userContainer.appendChild(userCard);
+                });
+            } catch (error) {
+                userContainer.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchUsersAndPosts);
+    </script>
+</head>
+<body>
+    <h2>User Information</h2>
+    <div id="userContainer"></div>
+</body>
+</html>
